@@ -1,0 +1,47 @@
+<!--##################################################################################################################
+    ##################################"WORKSHOP_1 PAR IVAN_lOIC le 24/08/2022"########################################
+    ##################################################################################################################-->
+<div class="container">
+    <div class="card">
+        <div class="card-header"><strong>Products List</strong> </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                      <th>Id</th><th>Title</th><th>Price</th><th>Quantity</th><th>Like</th>
+                     </tr>
+                </thead>
+                <tbody *ngFor="let product of productList; let i= index">  <!--ici  c'est la bouclepermetant de lier les titre aux produits (pour un produits de la liste des produits on fait:)-- i=est l'objet qu'on manipule-->
+                    <tr *ngIf="product.price < priceMax || priceMax==null"><!--ici c'est la condition consernant la barre de recherche qui cherche les produits ayant un prix inferieur au prix max(le prix max etant le prix entré)-->
+                        <td>{{product.id}}</td>
+                        <td>{{product.title}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.quantity}}</td>
+                        <td>{{product.like}}</td>
+                                                                           <!--ici on retroiuve les boutons like et buy-->
+                        <td>
+                            <button class="btn btn-primary" (click)="likeProduct(i)">
+                                <i class="bi bi-hand-thumbs-up-fill"></i>
+                               <!-- like--> 
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-success" [disabled]="product.quantity==0" (click)="buyProduct(i)">
+                                <i class="bi bi-cart4"></i>
+                                <!--buy-->
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                                                                          <!--ce qui suit c'est ma barre de recherche automatique, en fonction du pric entré-->
+                <div class="form-group">
+                    <label>Search:</label>
+                    <input type="number" name="price" class="form-control" [(ngModel)]="priceMax">
+                </div>
+            </table> 
+        </div>
+    </div>
+</div>
+<!--##################################################################################################################
+    ##################################"WORKSHOP_1 PAR IVAN_lOIC le 24/08/2022"########################################
+    ##################################################################################################################-->
